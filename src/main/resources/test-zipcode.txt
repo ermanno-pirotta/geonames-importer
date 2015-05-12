@@ -1,0 +1,10 @@
+IT	67010	Barete	Abruzzi	AB	L'Aquila	AQ			42.4501	13.2806	4
+IT	67012	San Giovanni	Abruzzi	AB	L'Aquila	AQ			42.2833	13.5667	4
+IT	67012	Cagnano Amiterno	Abruzzi	AB	L'Aquila	AQ			42.4574	13.2279	4
+IT	67013	Ortolano	Abruzzi	AB	L'Aquila	AQ			42.5193	13.4238	4
+IT	67013	Campotosto	Abruzzi	AB	L'Aquila	AQ			42.5588	13.368	4
+IT	67013	Poggio Cancelli	Abruzzi	AB	L'Aquila	AQ			42.5623	13.327	4
+IT	67013	Mascioni	Abruzzi	AB	L'Aquila	AQ			42.5282	13.3492	4
+IT	67014	Capitignano	Abruzzi	AB	L'Aquila	AQ			42.5204	13.3012	4
+IT	67015	Montereale	Abruzzi	AB	L'Aquila	AQ			42.5233	13.2459	4
+IT	67015	Marana	Abruzzi	AB	L'Aquila	AQ			42.4967	13.2236	4

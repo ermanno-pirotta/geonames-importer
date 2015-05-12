@@ -1,0 +1,9 @@
+This directory contains all the views that must be created in couchbase and published to production enviroment.
+
+By convention, the view MUST be named as the file where it is defined and the design document MUST be named
+as the directory.
+
+I.e. 
+file: zipcodeplace/all.js
+-> view name = all
+-> design doc name = zipcodeplace
