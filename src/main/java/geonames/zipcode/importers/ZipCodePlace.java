@@ -9,7 +9,7 @@ import org.springframework.data.couchbase.core.mapping.Field;
 @Document
 public class ZipCodePlace {
 	@Id
-	public final String id = UUID.randomUUID().toString();
+	public final String id = "Place_" + UUID.randomUUID().toString();
 	
 	@Field
 	private String countryCode; // iso country code, 2 characters
