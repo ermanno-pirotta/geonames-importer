@@ -7,3 +7,5 @@ I.e.
 file: zipcodeplace/all.js
 -> view name = all
 -> design doc name = zipcodeplace
+
+For the "all" view the "count" reduce function MUST be added.
