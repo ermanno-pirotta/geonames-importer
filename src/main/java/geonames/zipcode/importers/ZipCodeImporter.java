@@ -5,8 +5,11 @@ import geonames.zipcode.commons.ImportResult;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,21 +20,35 @@ import au.com.bytecode.opencsv.bean.CsvToBean;
 @Component
 public class ZipCodeImporter {
 
+	private static final Logger logger = LoggerFactory.getLogger(ZipCodeImporter.class);
+	
 	@Autowired
 	private ZipCodePlaceRepository repository;
 
 	public ImportResult importFromFile(String pathTofileToImport)
-			throws ImportException {		
-		try{
-			List<ZipCodePlace> places = this.readPlacesFromFile(pathTofileToImport);
-			return storePlaces(places);		
+			throws ImportException {				
+		logger.info(String.format("Import of file %s started", pathTofileToImport));
+		try{			
+			logger.info("importing file data in memory..");
+			List<ZipCodePlace> places = this.readPlacesFromFile(pathTofileToImport);			
+			
+			logger.info("saving data in storage");
+			List<ZipCodePlace> storedPlaces = storePlaces(places);		
+			int importedNr = places.size();
+			int notSavedNr = importedNr - storedPlaces.size();
+			
+			logger.info(String.format("Import of file %s completed (number of imported data = %d, number of saved data = %d)", 
+										pathTofileToImport, importedNr, notSavedNr));
+			
+			return new ImportResult(importedNr,notSavedNr);
 		}
 		catch(Exception e){
+			logger.error(String.format("Unexpected exception while importing the file (message = %s)",e.getMessage()),e);
 			throw new ImportException(e.getMessage(),e);
 		}
 	}
 
-	//TODO: check why this does not work
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private List<ZipCodePlace> readPlacesFromFile(String pathTofileToImport)
 			throws FileNotFoundException {
 		CSVReader reader = new CSVReader(new FileReader(pathTofileToImport), '\t');
@@ -49,17 +66,16 @@ public class ZipCodeImporter {
 		return csv.parse(strat, reader);
 	}
 
-	private ImportResult storePlaces(List<ZipCodePlace> places) {
-		int importCount = places.size();
-		int errorCount = 0;
-
+	private List<ZipCodePlace> storePlaces(List<ZipCodePlace> places) {		
+		List<ZipCodePlace> storedPlaces = new ArrayList<ZipCodePlace>(places.size());
+		
 		for(int i=0;i<places.size();i++){
 			ZipCodePlace savedPlace = repository.save(places.get(i));
-			if(savedPlace==null){
-				errorCount++;
+			if(savedPlace!=null){
+				storedPlaces.add(savedPlace);
 			}
 		}
 
-		return new ImportResult(importCount, errorCount);
+		return storedPlaces;
 	}
 }
