@@ -15,12 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.Resource;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = GeoNamesZipCodeCouchbaseImporterTest.class)
-@ActiveProfiles("test")
+@TestPropertySource("/application-test.properties")
 public class GeoNamesZipCodeCouchbaseImporterApplicationTests {
 	@Autowired
 	ZipCodeImporter importer;

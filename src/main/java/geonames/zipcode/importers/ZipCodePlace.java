@@ -32,9 +32,9 @@ public class ZipCodePlace {
 	@Field
 	private String adminCode3; // 3. order subdivision (community) varchar(20)
 	@Field
-	private Float latitude; // estimated latitude (wgs84)
+	private Double latitude; // estimated latitude (wgs84)
 	@Field
-	private Float longitude; // estimated longitude (wgs84)
+	private Double longitude; // estimated longitude (wgs84)
 	@Field
 	private Integer accuracy; // accuracy of lat/lng from 1=estimated to
 								// 6=centroid
@@ -115,19 +115,19 @@ public class ZipCodePlace {
 		this.adminCode3 = adminCode3;
 	}
 
-	public Float getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(Float latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
 
-	public Float getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(Float longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 

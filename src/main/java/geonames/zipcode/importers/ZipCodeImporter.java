@@ -35,12 +35,12 @@ public class ZipCodeImporter {
 			logger.info("saving data in storage");
 			List<ZipCodePlace> storedPlaces = storePlaces(places);		
 			int importedNr = places.size();
-			int notSavedNr = importedNr - storedPlaces.size();
+			int savedNr = storedPlaces.size();
 			
 			logger.info(String.format("Import of file %s completed (number of imported data = %d, number of saved data = %d)", 
-										pathTofileToImport, importedNr, notSavedNr));
+										pathTofileToImport, importedNr, savedNr));
 			
-			return new ImportResult(importedNr,notSavedNr);
+			return new ImportResult(importedNr,importedNr - savedNr);
 		}
 		catch(Exception e){
 			logger.error(String.format("Unexpected exception while importing the file (message = %s)",e.getMessage()),e);
