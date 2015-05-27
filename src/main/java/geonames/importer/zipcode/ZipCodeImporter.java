@@ -1,7 +1,7 @@
-package geonames.zipcode.importers;
+package geonames.importer.zipcode;
 
-import geonames.zipcode.commons.ImportException;
-import geonames.zipcode.commons.ImportResult;
+import geonames.importer.commons.ImportException;
+import geonames.importer.commons.ImportResult;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

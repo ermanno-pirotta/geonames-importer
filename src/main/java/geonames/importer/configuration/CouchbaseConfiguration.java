@@ -1,4 +1,4 @@
-package geonames.zipcode;
+package geonames.importer.configuration;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.couchbase.config.AbstractCouchbaseConfiguration;
 import org.springframework.data.couchbase.repository.config.EnableCouchbaseRepositories;
 
-@EnableCouchbaseRepositories("geonames.zipcode")
+@EnableCouchbaseRepositories("geonames.importer")
 @Configuration
 public class CouchbaseConfiguration extends AbstractCouchbaseConfiguration{
 	@Value("${couchbase.cluster.bucket}")

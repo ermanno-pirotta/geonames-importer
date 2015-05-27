@@ -1,4 +1,4 @@
-package geonames.zipcode.importers;
+package geonames.importer.zipcode;
 
 import org.springframework.data.repository.CrudRepository;
 

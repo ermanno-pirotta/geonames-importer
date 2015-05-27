@@ -1,10 +1,10 @@
-package geonames.zipcode.importers;
+package geonames.importer.zipcode;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import geonames.zipcode.GeoNamesZipCodeCouchbaseImporterTest;
-import geonames.zipcode.commons.ImportException;
-import geonames.zipcode.commons.ImportResult;
+import geonames.importer.GeoNamesZipCodeCouchbaseImporterTest;
+import geonames.importer.commons.ImportException;
+import geonames.importer.commons.ImportResult;
 
 import java.io.IOException;
 
@@ -15,12 +15,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.Resource;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = GeoNamesZipCodeCouchbaseImporterTest.class)
 @TestPropertySource("/application-test.properties")
+@ActiveProfiles("test")
 public class GeoNamesZipCodeCouchbaseImporterApplicationTests {
 	@Autowired
 	ZipCodeImporter importer;

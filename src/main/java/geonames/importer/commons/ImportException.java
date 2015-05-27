@@ -1,4 +1,4 @@
-package geonames.zipcode.commons;
+package geonames.importer.commons;
 
 public class ImportException extends RuntimeException {
 
