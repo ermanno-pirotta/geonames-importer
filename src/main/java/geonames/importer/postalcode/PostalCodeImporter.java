@@ -1,4 +1,4 @@
-package geonames.importer.zipcode;
+package geonames.importer.postalcode;
 
 import geonames.importer.commons.ImportException;
 import geonames.importer.commons.ImportResult;
@@ -18,22 +18,22 @@ import au.com.bytecode.opencsv.bean.ColumnPositionMappingStrategy;
 import au.com.bytecode.opencsv.bean.CsvToBean;
 
 @Component
-public class ZipCodeImporter {
+public class PostalCodeImporter {
 
-	private static final Logger logger = LoggerFactory.getLogger(ZipCodeImporter.class);
+	private static final Logger logger = LoggerFactory.getLogger(PostalCodeImporter.class);
 	
 	@Autowired
-	private ZipCodePlaceRepository repository;
+	private PostalCodeRepository repository;
 
 	public ImportResult importFromFile(String pathTofileToImport)
 			throws ImportException {				
 		logger.info(String.format("Import of file %s started", pathTofileToImport));
 		try{			
 			logger.info("importing file data in memory..");
-			List<ZipCodePlace> places = this.readPlacesFromFile(pathTofileToImport);			
+			List<PostalCode> places = this.readPlacesFromFile(pathTofileToImport);			
 			
 			logger.info("saving data in storage");
-			List<ZipCodePlace> storedPlaces = storePlaces(places);		
+			List<PostalCode> storedPlaces = storePlaces(places);		
 			int importedNr = places.size();
 			int savedNr = storedPlaces.size();
 			
@@ -49,12 +49,12 @@ public class ZipCodeImporter {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private List<ZipCodePlace> readPlacesFromFile(String pathTofileToImport)
+	private List<PostalCode> readPlacesFromFile(String pathTofileToImport)
 			throws FileNotFoundException {
 		CSVReader reader = new CSVReader(new FileReader(pathTofileToImport), '\t');
 
 		ColumnPositionMappingStrategy strat = new ColumnPositionMappingStrategy();
-		strat.setType(ZipCodePlace.class);
+		strat.setType(PostalCode.class);
 		String[] columns = new String[] { "countryCode", "postalCode",
 											"placeName", "adminName1", "adminCode1", "adminName2",
 											"adminCode2", "adminName3", "adminCode3", "latitude",
@@ -66,11 +66,11 @@ public class ZipCodeImporter {
 		return csv.parse(strat, reader);
 	}
 
-	private List<ZipCodePlace> storePlaces(List<ZipCodePlace> places) {		
-		List<ZipCodePlace> storedPlaces = new ArrayList<ZipCodePlace>(places.size());
+	private List<PostalCode> storePlaces(List<PostalCode> places) {		
+		List<PostalCode> storedPlaces = new ArrayList<PostalCode>(places.size());
 		
 		for(int i=0;i<places.size();i++){
-			ZipCodePlace savedPlace = repository.save(places.get(i));
+			PostalCode savedPlace = repository.save(places.get(i));
 			if(savedPlace!=null){
 				storedPlaces.add(savedPlace);
 			}

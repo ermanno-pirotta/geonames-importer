@@ -10,10 +10,10 @@ import org.springframework.context.annotation.Profile;
 @SpringBootApplication
 @Import(CouchbaseConfiguration.class)
 @Profile("test")
-public class GeoNamesZipCodeCouchbaseImporterTest{
+public class PostalCodeCouchbaseImporterTest{
 
     public static void main(String[] args) {
-        SpringApplication.run(GeoNamesZipCodeCouchbaseImporterTest.class, args);
+        SpringApplication.run(PostalCodeCouchbaseImporterTest.class, args);
         
     }
 }

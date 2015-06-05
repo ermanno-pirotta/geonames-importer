@@ -4,8 +4,8 @@ By convention, the view MUST be named as the file where it is defined and the de
 as the directory.
 
 I.e. 
-file: zipcodeplace/all.js
+file: postalCode/all.js
 -> view name = all
--> design doc name = zipcodeplace
+-> design doc name = postalcode
 
 For the "all" view the "count" reduce function MUST be added.

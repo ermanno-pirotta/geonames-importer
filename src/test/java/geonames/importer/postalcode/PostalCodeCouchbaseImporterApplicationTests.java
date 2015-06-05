@@ -1,14 +1,14 @@
-package geonames.importer.zipcode;
+package geonames.importer.postalcode;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import geonames.importer.GeoNamesZipCodeCouchbaseImporterTest;
+import geonames.importer.PostalCodeCouchbaseImporterTest;
 import geonames.importer.commons.ImportException;
 import geonames.importer.commons.ImportResult;
 
 import java.io.IOException;
 
-import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,27 +20,27 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = GeoNamesZipCodeCouchbaseImporterTest.class)
+@SpringApplicationConfiguration(classes = PostalCodeCouchbaseImporterTest.class)
 @TestPropertySource("/application-test.properties")
 @ActiveProfiles("test")
-public class GeoNamesZipCodeCouchbaseImporterApplicationTests {
+public class PostalCodeCouchbaseImporterApplicationTests {
 	@Autowired
-	ZipCodeImporter importer;
+	PostalCodeImporter importer;
 
 	@Autowired
-	ZipCodePlaceRepository repository;
+	PostalCodeRepository repository;
 	
 	@Autowired
 	ApplicationContext context;
 
-	@After
+	@Before
 	public void setup() {
 		repository.deleteAll();
 	}
 
 	@Test
 	public void shouldImportAllPlacesFromFile() throws ImportException, IOException {
-		Resource resource = context.getResource("file:src/main/resources/test-zipcode.txt");
+		Resource resource = context.getResource("file:src/main/resources/test-postalcode.txt");
 		assertThat(resource.exists(),is(true));
 		
 		ImportResult result = importer.importFromFile(resource.getFile().getAbsolutePath());
@@ -56,5 +56,4 @@ public class GeoNamesZipCodeCouchbaseImporterApplicationTests {
 	public void shouldThrowAnExceptionWhenEmptyFile() throws ImportException {
 		importer.importFromFile("test-empty.txt");
 	}
-
 }

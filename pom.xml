@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>GeoNamesCouchbaseImporter</name>
+	<name>geonames-couchbase-importer</name>
 	<description>Imports from GeoNames files into Couchbase</description>
 
 	<parent>

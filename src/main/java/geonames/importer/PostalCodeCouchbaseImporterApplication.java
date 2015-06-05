@@ -1,7 +1,7 @@
 package geonames.importer;
 
 import geonames.importer.configuration.CouchbaseConfiguration;
-import geonames.importer.zipcode.ZipCodeImporter;
+import geonames.importer.postalcode.PostalCodeImporter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,10 +14,10 @@ import org.springframework.context.annotation.Profile;
 @SpringBootApplication
 @Import(CouchbaseConfiguration.class)
 @Profile("prod")
-public class GeoNamesZipCodeCouchbaseImporterApplication implements CommandLineRunner{
+public class PostalCodeCouchbaseImporterApplication implements CommandLineRunner{
 
 	@Autowired
-	private ZipCodeImporter importer;
+	private PostalCodeImporter importer;
 	
 	@Value("${geonames.zipcode.file}")
 	private String fileToImportPath;
@@ -28,7 +28,7 @@ public class GeoNamesZipCodeCouchbaseImporterApplication implements CommandLineR
 	}
 	
     public static void main(String[] args) {
-        SpringApplication.run(GeoNamesZipCodeCouchbaseImporterApplication.class, args);
+        SpringApplication.run(PostalCodeCouchbaseImporterApplication.class, args);
         
     }
 }
