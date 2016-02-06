@@ -3,11 +3,12 @@ package geonames.importer.postalcode;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.couchbase.core.mapping.Document;
 import org.springframework.data.couchbase.core.mapping.Field;
+import org.springframework.util.StringUtils;
 
 @Document
 public class PostalCode {
 	@Id
-	public final String id = "PostalCode_" + this.hashCode();
+	public String id;
 	
 	@Field
 	private String countryCode; // iso country code, 2 characters
@@ -40,7 +41,7 @@ public class PostalCode {
 	public PostalCode(){
 		
 	}
-
+	
 	public String getCountryCode() {
 		return countryCode;
 	}
@@ -140,7 +141,23 @@ public class PostalCode {
 	public String getId() {
 		return id;
 	}
+	
+	public void setId(String id){
+		this.id = id;
+	}
 
+	public static String buildIdFromPostalCodeAndPlaceName(String postalCode, String placeName){
+		if(StringUtils.isEmpty(placeName)){
+			throw new IllegalArgumentException("placeName must not be null or empty");
+		}
+		
+		if(StringUtils.isEmpty(postalCode)){
+			throw new IllegalArgumentException("postalCode must not be null or empty");
+		}
+		
+		return "_postalcode_" + StringUtils.trimAllWhitespace(postalCode + "_" + placeName).toLowerCase();
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

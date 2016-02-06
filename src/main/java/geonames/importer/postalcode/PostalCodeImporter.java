@@ -70,7 +70,9 @@ public class PostalCodeImporter {
 		List<PostalCode> storedPlaces = new ArrayList<PostalCode>(places.size());
 		
 		for(int i=0;i<places.size();i++){
-			PostalCode savedPlace = repository.save(places.get(i));
+			PostalCode placeToSave = places.get(i);
+			placeToSave.setId(PostalCode.buildIdFromPostalCodeAndPlaceName(placeToSave.getPostalCode(),placeToSave.getPlaceName()));
+			PostalCode savedPlace = repository.save(placeToSave);
 			if(savedPlace!=null){
 				storedPlaces.add(savedPlace);
 			}

@@ -11,6 +11,7 @@ public class PostalCodePlaceBuilder {
 	}
 		
 	public PostalCode build(){
+		this.instance.id = PostalCode.buildIdFromPostalCodeAndPlaceName(this.instance.getPostalCode(),this.instance.getPlaceName());
 		return this.instance;
 	}
 	
